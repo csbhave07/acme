@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { distinctUntilChanged } from 'rxjs';
 import { IUser } from '../../models/users';
 import { SharedService } from '../../services/shared.service';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-details',
@@ -10,16 +10,18 @@ import {MatCardModule} from '@angular/material/card';
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit {
 
   private sharedService = inject(SharedService);
   userDetails!: IUser | null;
 
-  constructor() {
+  ngOnInit(): void {
     // instead of shared service we can use api data here
     this.sharedService.selectedRow$.pipe(distinctUntilChanged()).subscribe((row: IUser | null) => {
       this.userDetails = row;
     });
+
   }
+
 
 }
