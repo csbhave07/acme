@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="title">
+                <h1>User table</h1>
+            </div>
+        </div>
+        <div class="col-12">
+            <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="language">
+                    <th mat-header-cell *matHeaderCellDef> Language </th>
+                    <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bio">
+                    <th mat-header-cell *matHeaderCellDef> Bio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bio}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)"
+                    style="cursor: pointer;"></tr>
+            </table> -->
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <!-- Name Column (Editable) -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div *ngIf="!element.editing; else editName">
+                            {{ element.name }}
+                        </div>
+                        <ng-template #editName>
+                            <input [(ngModel)]="element.name" />
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <!-- Email Column (Editable) -->
+                <ng-container matColumnDef="language">
+                    <th mat-header-cell *matHeaderCellDef> Language </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div *ngIf="!element.editing; else editLanguage">
+                            {{ element.language }}
+                        </div>
+                        <ng-template #editLanguage>
+                            <input [(ngModel)]="element.language" />
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bio">
+                    <th mat-header-cell *matHeaderCellDef> Bio </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div *ngIf="!element.editing; else editBio">
+                            {{ element.bio }}
+                        </div>
+                        <ng-template #editBio>
+                            <input [(ngModel)]="element.bio" />
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        <ng-container *ngIf="editRowId === row.id; else editBtn">
+                            <button mat-button color="primary" (click)="saveEdit(row, $event)">Save</button>
+                            <button mat-button color="warn" (click)="cancelEdit(row, $event)">Cancel</button>
+                        </ng-container>
+                        <ng-template #editBtn>
+                            <button mat-button color="accent" (click)="enableEdit(row, $event)">Edit</button>
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="cursor: pointer;"
+                    (click)="onRowClick(row, $event)"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+    </div>
+</div>

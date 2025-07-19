@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            @if(userDetails){
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{userDetails.name}}</mat-card-title>
+                    <mat-card-subtitle>{{userDetails.id}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{userDetails.bio}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+            }
+        </div>
+    </div>
+</div>
